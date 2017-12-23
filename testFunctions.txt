@@ -1,0 +1,34 @@
+# This assembly program will demonstate different functions of the MIPS computer
+# The result of these operations will be stored in consecutive memory addresses
+# The first address will be stored into $t1 and is stored by the end of the first store instruction
+
+# Demonstrate lui and addi. Store result into memory (will remove this comment later)
+001111-00000-01000-11111-11111-111111	#(lui $t0 -1) Make $t0's upper bits all 1's
+001000-01000-01000-00001-10010-101100	#(addi $t0 $t0 3244) $t0 += 3244. $t0 = -62292 (TwoComp)
+001000-00000-01001-00000-00001-100100	#(addi $t1 $zero 100) Prepare for storing word
+101011-01001-01000-00000-00000-000000	#(sw $t0 0($t1)) Store $t0 = -62292 (TwoComp) into address 100
+
+# Demonstrate and by masking the upper bits of $t0 and storing it in the next address
+001000-00000-01010-01111-11111-111111   #(addi $t2 $zero 32767) Make $t2's lower bits all 1's. Can't make all of immd field 1's because you would have to set it to -1. MIPS computer will sign-extend assigning the value to $t2
+000000-01000-01010-01000-00000-100100   #(and $t0 $t0 $t2) $t0's upper bits now masked away
+101011-01001-01000-00000-00000-000001   #(sw $t0 1($t1)) Store masked $t0 into the next memory address (2001)
+
+# Demonstrate lw by taking value at address 2000. Demonstate add instruction
+100011-01001-01000-00000-00000-000000   #(lw $t0 0($t1)) Load first loaded value = -62292 (TwoComp)
+001000-00000-01010-01110-01001-101100   #(addi $t2 $zero 29292) Set $t2's value to 29292
+000000-01000-01010-01000-00000-100000   #(add $t0 $t0 $t2) $t0 should now be -33000
+101011-01001-01000-00000-00000-000010   #(sw $t0 2($t1)) Store -33000 (TwoComp) into second address
+
+# Demonstate ori by using to set register value. Demonstate or by making lower bits all 1
+001101-00000-01000-00000-01110-010101   #(ori $t0 $zero 917) Set $t0 value to 917
+001101-00000-01010-00000-00000-101010   #(ori $t2 $zero 10) Set $t2's value to 42
+000000-01000-01010-01000-00000-100101   #(or $t0 $t0 $t2) $t0 should be the same except all lower 6 bits are 1's
+101011-01001-01000-00000-00000-000011   #(sw $t0 3($t2)) Store value into next memory address
+
+### MEMORY ADDRESS (from 100) ###
+#[0]    -62292
+#[1]    3244 (...01-10010-101100
+#[2]    -33000
+#[3]    959 (...01110-111111)
+#[4]    0
+
