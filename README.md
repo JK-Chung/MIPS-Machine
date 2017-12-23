@@ -15,7 +15,7 @@ I reimplemented instructions so that they would now work in the MIPS machine and
 The default load from memory uses a text file that holds that default content. This default content was designed to be able to recursively calculate Fibonacci numbers (to exemplify the machine's ability to use the stack). This involved coding the program in MIPS machine code. Another text file of machine code was created to demonstrate various instructions and the load-from-file memory loading.
 
 # Using the MIPS-Machine
-This MIPS machine takes in three different types of arguments, each of which will load different contents into the memory of the MIPS machine
+This MIPS machine takes in three different types of command-line arguments, each of which will load different contents into the memory of the MIPS machine
 * "-d" - This loads the default memory into the machine. The code in this case in a Fibonacci calculator which takes advantage of the recursion enabled by this MIPS simulation. The default contents is stored in a txt file of the same directory
 * "-c" - Allows the user to input contents (in binary) to sequentially fill the memory, starting from address 0
 * "-f" - Takes in memory contents from a txt file specified in the next argument (e.g. ./a.out -f testFunctions.txt)
