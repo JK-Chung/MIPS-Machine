@@ -3,6 +3,8 @@ This MIPS machine makes simulation of the MIPS ISA, registers and some memory. I
 
 In addition to being a MIPS machine, the machine includes translation from deciaml to binary and vice-versa and has the in-built ability to disassemble its memory contents into MIPS assembly language. Disassembly will be done after the initial loading of memory and again for every instruction that is run.
 
+Outside of this project, I have started work on a MIPS assembler. This will take in a text file of assembly code and output a text file of MIPS machine instructions that the MIPS machine can use.
+
 ## University Project
 The project was a group project that had us code a simulation of a more basic computer. For this more basic machine, I designed and built the fundamental structure of the program (creating structs, fetch-decode-execute cycle and deciding what data types to use), implemented some MIPS instruction, created parsing functions and created functions translating binary and decimal.
 
